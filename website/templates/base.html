@@ -1,0 +1,67 @@
+{# our base html class.. how we want our 'theme' to look.. navbar, footer, etc #}
+{# we can then override our base templates with other more specific templates for different pages... #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+        />
+        {# allows us to use 'blocks' which allows us to override certain html elements.. #}
+        <title>{% block title %}Home{% endblock %}</title>
+    </head>
+    <body>
+        {# first, create navbar... (using bootstrap classes) #}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            {# button to toggle the navbar if we are on a mobile screen... #}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggler-icon"> </span>
+            </button>
+            {# now create the actual items in our navbar... #}
+            <div class="collapse navbar-collapse" id="navbar">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" id="login" href="/login">Login</a>
+                    <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                    <a class="nav-item nav-link" id="home" href="/">Home</a>
+                </div>
+            </div>
+        </nav>
+
+        {# anything inside this block will appear on other pages, but those pages can override this content... #}
+        <div class="container">
+            {% block content %} {% endblock %}
+        </div>
+
+
+        {# script tags to import the bootstrap for our js?? #}
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+
+        {# to import out js file from our static fodler... #}
+        {# this is python.. whenever we have two {{}} like below... it is python #}
+        <script type="text/javascript" src="{{ url_for('static', filename='index.js')}}"></script>
+    </body>
+</html>
