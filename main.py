@@ -7,4 +7,3 @@ app = create_app()
 if __name__ == '__main__':  # can only run our app from our main file
     app.run(debug=True)     # we'd turn off debug=True in production...
     
-    

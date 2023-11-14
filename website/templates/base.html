@@ -36,6 +36,32 @@
                 </div>
             </div>
         </nav>
+        {# to add in our flash messages that we added to our if statements in our sign-up route.. #}
+        {# this defines a variable, messages, and sets it to a built in Flask function which will grab all the flashed messages #}
+        {# we then loop thru all the messages we might have.. #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %} {# if we have any messages.. #}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+                {# alert for 'danger', or incorrect info.. #}
+                <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {# alert for 'success', or correct info.. #}
+            {% else %}
+                <div class="alert alert-success alter-dismissable fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
 
         {# anything inside this block will appear on other pages, but those pages can override this content... #}
         <div class="container">
