@@ -3,6 +3,21 @@
 
 {# override the 'content' section from base.html #}
 {% block content %}
-<h1> This is te home page </h1>
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">     # displaying our notes with a ul and a for loop
+    {% for note in user.notes %}                        # since we'll always be keeping track of current_user, can do this 
+    <li class="list-group-item">{{ note.data }} </li>
+    {% endfor %}
+</ul>
+
+# create a form here for user to write their Note
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+</form>
+
+
 {% endblock %}
 
